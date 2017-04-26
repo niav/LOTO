@@ -4,18 +4,22 @@
 #include <unistd.h>
 #include <random>
 #include <ctime>
-
+#include <iomanip>
 using namespace std;
+
 void ascending_sort (int *arr, int grille_sz);
 void fill_arr(int *lot, int num);
 void check_duplicates (int *lot, int num);
 int elementReinit(int el);
 
+template <class T>
+void ascending_sort (T *arr, int grille_sz);
+
 int main() {//LOTO sur FDJ.COM
 
 	int i;
     int cnt{0};
-    time_t current = time(0);
+    time_t current = time(nullptr);
     char* seedTime = ctime(&current);
 
     fstream seedsFile;
@@ -31,7 +35,7 @@ int main() {//LOTO sur FDJ.COM
     const int num = 5; //numbers quant(6 in LOTO)
 	const int lots = 3; //numbers of seeds +1 for the average results
 	int lot[num+1];
-    int lucky[num+1]{0};
+    double lucky[num+1]{0};
 
 
     while(cnt<lots) {
@@ -61,14 +65,12 @@ int main() {//LOTO sur FDJ.COM
     seedsFile << "\nResult array:\n";
 	for (i = 0; i <= num; i++) {
         seedsFile << lucky[i] << ' ';
-        cout << lucky[i]<< ' ';
+        cout << setprecision(2) << lucky[i]<< ' ';
     }
 
     seedsFile << '\n' << "-------" << endl;
     seedsFile.close();
 
-    cout << '\n';
-	system("pause");
 	return 0;
 }
 
@@ -153,4 +155,23 @@ void check_duplicates(int *lot, int num) {
             }
         }
     } while(isDuplicates);
+}
+
+template<class T>
+void ascending_sort(T *arr, int grille_sz) {
+
+    bool sorted{false};
+
+    while (!sorted) {
+        sorted = true;
+        for (int i = 1; i < grille_sz; ++i) {
+            if (arr[i - 1] > arr[i]) {
+                int tmp = arr[i - 1];
+                arr[i - 1] = arr[i];
+                arr[i] = tmp;
+                sorted = false;
+            }
+        }
+    }
+
 }
