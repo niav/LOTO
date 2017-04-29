@@ -68,7 +68,7 @@ int main() {//LOTO sur FDJ.COM
     cout << "Result array: " << "\n";
     seedsFile << "\nResult array:\n";
     for (i = 0; i <= num; i++) {
-        seedsFile << lucky[i] << " ";
+        seedsFile << setiosflags(ios::fixed) << setprecision(0) << lucky[i] << " ";
         cout << setiosflags(ios::fixed) << setprecision(0) << lucky[i] << " ";
     }
 
