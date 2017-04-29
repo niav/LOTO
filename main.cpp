@@ -48,12 +48,12 @@ int main() {//LOTO sur FDJ.COM
         ascending_sort(lot, num);
 
 
-        cout << "seed #" << cnt << ':' << endl;
-        seedsFile << "\nseed #" << cnt << ':' << endl;
+        cout << "seed #" << cnt << ":" << endl;
+        seedsFile << "\nseed #" << cnt << ":" << endl;
         for (i = 0; i <= num; i++) {
             lucky[i] += lot[i];
-            cout << lot[i] << ' ';
-            seedsFile << lot[i] << ' ';
+            cout << lot[i] << " ";
+            seedsFile << lot[i] << " ";
         }
         cout << endl;
 
@@ -65,14 +65,14 @@ int main() {//LOTO sur FDJ.COM
     }
     ascending_sort(lucky, num);
 
-    cout << "Result array: " << '\n';
+    cout << "Result array: " << "\n";
     seedsFile << "\nResult array:\n";
     for (i = 0; i <= num; i++) {
-        seedsFile << lucky[i] << ' ';
-        cout << setprecision(2) << lucky[i] << ' ';
+        seedsFile << lucky[i] << " ";
+        cout << setiosflags(ios::fixed) << setprecision(0) << lucky[i] << " ";
     }
 
-    seedsFile << '\n' << "-------" << endl;
+    seedsFile << "\n" << "-------" << endl;
     seedsFile.close();
 
     return 0;
